@@ -1,5 +1,5 @@
 let Usuario = (sequelize, DataTypes) => {
-    return sequelize.define(
+    let usuario = sequelize.define(
         'Usuario', // <== primeiro param: Nome do model
         { 
             // <== segundo param: Colunas da minha tabela...
@@ -24,9 +24,15 @@ let Usuario = (sequelize, DataTypes) => {
         },
         {
             tableName: "usuarios",
-            timestamps: false,
+            timestamps: true,
         }
-    )
+    );
+
+    usuario.associate = (models) => {
+        usuario.hasMany(models.Post, {foreignKey: 'usuarios_id',as: 'posts'});
+    }
+
+    return usuario;
 }
 
 module.exports = Usuario;

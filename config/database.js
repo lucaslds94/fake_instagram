@@ -1,5 +1,4 @@
 
-// Trazendo as info o .env
 require("dotenv").config();
 
 module.exports = {
